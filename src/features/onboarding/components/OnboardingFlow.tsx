@@ -9,9 +9,10 @@ import {
   CheckCircle2 
 } from 'lucide-react';
 import { useLocalStorage } from '../../../shared/hooks/useLocalStorage';
-import { Button, Select } from '@headlessui/react';
 import { Card, CardHeader, CardTitle, CardDescription } from '../../../shared/components/Card';
 import type { AppState, UserProfile } from '../../../shared/types';
+import { Button } from '../../../shared/components/Button';
+import { Select } from '../../../shared/components/Select';
 
 export function OnboardingFlow() {
   const navigate = useNavigate();
