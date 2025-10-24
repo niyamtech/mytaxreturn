@@ -37,4 +37,4 @@ jobs:
           #### App configuration ####
           app_location: "/"          # Root of your app
           api_location: ""           # Blank if no Azure Functions
-          output_location: "build"   # CRA uses build; Vite uses dist
+          output_location: "dist"    # Vite outputs to dist
