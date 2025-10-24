@@ -1,0 +1,40 @@
+name: Azure Static Web App CI/CD
+
+on:
+  push:
+    branches:
+      - main  # Trigger on pushes to main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    name: Build and Deploy React App to Azure Static Web Apps
+    steps:
+      # 1. Checkout repo
+      - uses: actions/checkout@v3
+
+      # 2. Setup Node
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # Match your local Node version
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # 4. Build app
+      - name: Build React App
+        run: npm run build
+
+      # 5. Deploy to Azure Static Web App
+      - name: Deploy to Azure Static Web Apps
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_BRAVE_OCEAN_0FEB62600 }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }} # Default GitHub token
+          action: "upload"
+          #### App configuration ####
+          app_location: "/"          # Root of your app
+          api_location: ""           # Blank if no Azure Functions
+          output_location: "build"   # CRA uses build; Vite uses dist
